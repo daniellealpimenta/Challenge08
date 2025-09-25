@@ -23,7 +23,7 @@ playground.xcworkspace
 # Packages/
 # Package.pins
 # Package.resolved
-*.xcodeproj
+# *.xcodeproj
 *.DS_Store
 
 #
