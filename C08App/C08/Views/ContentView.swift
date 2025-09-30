@@ -1,4 +1,3 @@
-
 //
 //  ContentView.swift
 //  C08
@@ -10,13 +9,30 @@
 import SwiftUI
 import HumanSpeech
 
+
 struct ContentView: View {
     
     @State private var points: Int = 0
-    @State private var lives: Int = 3
+    @State private var lives: Int = 2
+    
+    @State public var answer: String = ""
+        .lowercased()
+        
+    @State public var animal: String = ""
+    
+    @State public var correct: Bool?
+    
+    private var words: [String] = ["cachorro", "peixe", "passaro"]
     
     @StateObject private var speechRecognizer = SpeechRecognizer()
+    
     @State private var isRecording = false
+    
+    @State private var manager = ViewModel()
+    
+    @State private var description: String = " "
+        
+    @State private var description2: String = " "
 
     
     var body: some View {
@@ -37,6 +53,7 @@ struct ContentView: View {
                         .font(.custom("Avenir-Black", size: 34))
                         .foregroundColor(Color.blue)
                         .shadow(color: Color.black.opacity(0.1), radius: 2, x: 0, y: 1)
+                        .padding(.top, 20)
                     
                     Text("Adivinhe os animais pelas dicas!")
                         .font(.custom("Avenir-Book", size: 18))
@@ -72,32 +89,39 @@ struct ContentView: View {
                 
                 // Dicas
                 VStack(spacing: 16) {
+                    
                     Text("Dicas")
                         .font(.custom("Avenir-Heavy", size: 24))
                         .foregroundColor(.blue)
                     
-                    ComponentCardView(title: "Dica 1 - 30 pontos", text: "Conteúdo da primeira dica")
-                    ComponentCardView(title: "Dica 2 - 20 pontos", text: "Conteúdo da segunda dica")
-                    ComponentCardView(title: "Dica 3 - 10 pontos", text: "Conteúdo da terceira dica")
+                    ComponentCardView(title: "Dica 1 - 30 pontos", text: description)
+                    
+                    if lives == 2 {
+                        ComponentCardView(title: "Dica 2 - 20 pontos", text: description2)
+                            .blur(radius: 5)
+                    } else {
+                        ComponentCardView(title: "Dica 2 - 20 pontos", text: description2)
+                    }
+                        
                 }
                 .padding(.horizontal)
                 
                 Text(speechRecognizer.transcript)
                     .padding()
                     .frame(maxWidth: .infinity, alignment: .leading)
-
-                
-                Spacer()
-                
+                                
                 // Feedback de resposta
                 HStack(spacing: 8) {
-                    Text("Resposta Incorreta")
-                        .font(.custom("Avenir-Heavy", size: 20))
-                        .foregroundColor(.red)
-                    
-                    Image(systemName: "x.circle.fill")
-                        .foregroundColor(.red)
-                        .imageScale(.large)
+                    if let correct = correct {
+                        Text(correct ? "Resposta Correta" : "Resposta Incorreta")
+                            .font(.custom("Avenir-Heavy", size: 20))
+                            .foregroundColor(correct ? .green : .red)
+                        
+                        Image(systemName: correct ? "checkmark.circle.fill" :  "x.circle.fill")
+                            .foregroundColor(correct ? .green : .red)
+                            .imageScale(.large)
+
+                    }
                 }
                 .opacity(0.85)
                 
@@ -109,7 +133,7 @@ struct ContentView: View {
                     VStack(spacing: 8) {
                         Image(systemName: "mic.fill")
                             .resizable()
-                            .frame(width: 50, height: 50)
+                            .frame(width: 30, height: 40)
                             .padding(25)
                             .background(
                                 Circle()
@@ -136,7 +160,12 @@ struct ContentView: View {
                 .buttonStyle(PlainButtonStyle())
                 .padding(.bottom, 40)
             }
-        }.onDisappear {
+        }.onAppear {
+            let resposnse = manager.startGame()
+            description = resposnse[0]
+            animal = resposnse[1]
+        }
+        .onDisappear {
             // Garante que a transcrição pare se a view desaparecer.
             if isRecording {
                 speechRecognizer.stopTranscribing()
@@ -146,8 +175,36 @@ struct ContentView: View {
 
     }
     
-    func checarResposta() {
-        // lógica para verificar resposta
+    private func checkAnswer() {
+        
+        if let foundWord = words.first(where: { word in answer.contains(word) }) {
+                        
+            if foundWord == animal {
+                correct = true
+                if lives == 2 {
+                    points += 30
+                    let response = manager.startGame()
+                    description = response[0]
+                    animal = response[1]
+                    lives = 2
+                } else {
+                    points += 20
+                    let response = manager.startGame()
+                    description = response[0]
+                    animal = response[1]
+                    lives = 2
+                }
+                
+            }else {
+                lives -= 1
+                correct = false
+                description2 = manager.getDescriptionLevels(animal: animal, level: 2)
+            }
+        } else {
+            lives -= 1
+            correct = false
+            description2 = manager.getDescriptionLevels(animal: animal, level: 2)
+        }
     }
     
     private func toggleRecording() {
@@ -155,15 +212,24 @@ struct ContentView: View {
         
         if isRecording {
             speechRecognizer.startTranscribing()
+            answer = speechRecognizer.transcript
         } else {
+            answer = speechRecognizer.transcript
+            answer = answer.removingAccents()
             speechRecognizer.stopTranscribing()
+            checkAnswer()
         }
     }
 
 }
 
-#Preview {
-    ContentView()
+extension String {
+    func removingAccents() -> String {
+        return self.folding(options: .diacriticInsensitive, locale: .current)
+    }
 }
 
 
+#Preview {
+    ContentView()
+}

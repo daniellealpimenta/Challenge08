@@ -18,11 +18,12 @@ struct ComponentCardView: View {
                 .font(.headline)
                 .foregroundColor(.white)
             Text(text)
+                .lineLimit(2)
                 .font(.subheadline)
                 .foregroundColor(.white.opacity(0.9))
         }
         .padding()
-        .frame(maxWidth: .infinity, alignment: .leading)
+        .frame(maxWidth: .infinity, minHeight: 100, alignment: .leading)
         .background(
             LinearGradient(colors: [Color.purple, Color.blue], startPoint: .topLeading, endPoint: .bottomTrailing)
         )
