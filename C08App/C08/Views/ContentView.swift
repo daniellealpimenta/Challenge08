@@ -128,7 +128,6 @@ struct ContentView: View {
                 // Botão de gravação estilizado
                 Button(action: {
                     toggleRecording()
-                    print("Iniciou a gravação")
                 }) {
                     VStack(spacing: 8) {
                         Image(systemName: "mic.fill")
