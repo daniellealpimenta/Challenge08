@@ -10,7 +10,7 @@ import HumanSpeech
 
 struct ContentView: View {
     // Mantém uma instância do seu SpeechRecognizer no estado da view.
-    @State private var speechRecognizer = SpeechRecognizer()
+    @StateObject private var speechRecognizer = SpeechRecognizer()
     
     // Controla se a gravação está ativa ou não.
     @State private var isRecording = false
