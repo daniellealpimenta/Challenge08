@@ -1,13 +1,22 @@
 {
-  "originHash" : "7536aee57753461f2931b0bec47cf100112a091e6c7dac381a705d4bf687e685",
+  "originHash" : "57674989284155127893dd71a39d29da0ee7d6a21b273594d138911c08b306a2",
   "pins" : [
+    {
+      "identity" : "animal-package",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/Rodrooj/Animal-Package",
+      "state" : {
+        "revision" : "0aa33095b296dd5e40eb2a317a195ecf9c5fdd47",
+        "version" : "1.0.0"
+      }
+    },
     {
       "identity" : "humanspeech",
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/daniellealpimenta/HumanSpeech.git",
       "state" : {
         "branch" : "main",
-        "revision" : "1db979beca6f30d90f05af8d29234af4cd41a8ba"
+        "revision" : "69a24818e38c52afb6fde49380d05738dcc95794"
       }
     }
   ],
