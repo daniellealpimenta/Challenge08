@@ -7,16 +7,29 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		CDCD3EE32E85DFD10088E4A7 /* HumanSpeech in Frameworks */ = {isa = PBXBuildFile; productRef = CDCD3EE22E85DFD10088E4A7 /* HumanSpeech */; };
+		CD67436F2E8B1BF6002D1541 /* HumanSpeech in Frameworks */ = {isa = PBXBuildFile; productRef = CD67436E2E8B1BF6002D1541 /* HumanSpeech */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		CDCD3ED32E85DFA60088E4A7 /* C08.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = C08.app; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
+/* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
+		CD67436C2E8714E0002D1541 /* Exceptions for "C08" folder in "C08" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				Info.plist,
+			);
+			target = CDCD3ED22E85DFA60088E4A7 /* C08 */;
+		};
+/* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
+
 /* Begin PBXFileSystemSynchronizedRootGroup section */
 		CDCD3ED52E85DFA60088E4A7 /* C08 */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
+			exceptions = (
+				CD67436C2E8714E0002D1541 /* Exceptions for "C08" folder in "C08" target */,
+			);
 			path = C08;
 			sourceTree = "<group>";
 		};
@@ -27,7 +40,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				CDCD3EE32E85DFD10088E4A7 /* HumanSpeech in Frameworks */,
+				CD67436F2E8B1BF6002D1541 /* HumanSpeech in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -70,7 +83,7 @@
 			);
 			name = C08;
 			packageProductDependencies = (
-				CDCD3EE22E85DFD10088E4A7 /* HumanSpeech */,
+				CD67436E2E8B1BF6002D1541 /* HumanSpeech */,
 			);
 			productName = C08;
 			productReference = CDCD3ED32E85DFA60088E4A7 /* C08.app */;
@@ -101,7 +114,7 @@
 			mainGroup = CDCD3ECA2E85DFA60088E4A7;
 			minimizedProjectReferenceProxies = 1;
 			packageReferences = (
-				CDCD3EE12E85DFD10088E4A7 /* XCRemoteSwiftPackageReference "HumanSpeech" */,
+				CD67436D2E8B1BF6002D1541 /* XCRemoteSwiftPackageReference "HumanSpeech" */,
 			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = CDCD3ED42E85DFA60088E4A7 /* Products */;
@@ -265,6 +278,9 @@
 				DEVELOPMENT_TEAM = 8YAD22YX6D;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = C08/Info.plist;
+				INFOPLIST_KEY_NSMicrophoneUsageDescription = YES;
+				INFOPLIST_KEY_NSSpeechRecognitionUsageDescription = YES;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -293,6 +309,9 @@
 				DEVELOPMENT_TEAM = 8YAD22YX6D;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = C08/Info.plist;
+				INFOPLIST_KEY_NSMicrophoneUsageDescription = YES;
+				INFOPLIST_KEY_NSSpeechRecognitionUsageDescription = YES;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -335,20 +354,20 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		CDCD3EE12E85DFD10088E4A7 /* XCRemoteSwiftPackageReference "HumanSpeech" */ = {
+		CD67436D2E8B1BF6002D1541 /* XCRemoteSwiftPackageReference "HumanSpeech" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/daniellealpimenta/HumanSpeech.git";
 			requirement = {
-				branch = main;
+				branch = test3;
 				kind = branch;
 			};
 		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		CDCD3EE22E85DFD10088E4A7 /* HumanSpeech */ = {
+		CD67436E2E8B1BF6002D1541 /* HumanSpeech */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = CDCD3EE12E85DFD10088E4A7 /* XCRemoteSwiftPackageReference "HumanSpeech" */;
+			package = CD67436D2E8B1BF6002D1541 /* XCRemoteSwiftPackageReference "HumanSpeech" */;
 			productName = HumanSpeech;
 		};
 /* End XCSwiftPackageProductDependency section */

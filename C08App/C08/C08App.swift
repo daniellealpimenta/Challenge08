@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import HumanSpeech
 
 @main
 struct C08App: App {

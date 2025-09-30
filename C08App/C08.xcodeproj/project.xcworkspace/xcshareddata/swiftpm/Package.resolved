@@ -6,8 +6,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/daniellealpimenta/HumanSpeech.git",
       "state" : {
-        "branch" : "main",
-        "revision" : "803ceed41d689e2b51207e5d560cf5a35f8e0195"
+        "branch" : "test3",
+        "revision" : "067b97f3fb37fe30a955744d1fe1f999223e2533"
       }
     }
   ],
