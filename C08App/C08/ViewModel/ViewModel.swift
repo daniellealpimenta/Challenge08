@@ -8,10 +8,20 @@
 import SwiftUI
 import Foundation
 import AnimalPackage
+import HumanSpeech
 
-struct ViewModel {
-    
+class ViewModel: ObservableObject {
+    @Published var points: Int = 0
+    @Published var lives: Int = 2
+    @Published var animal: String = ""
+    @Published var description: String = ""
+    @Published var description2: String = ""
+    @Published var answer: String = ""
+    @Published var words: [String] = ["cachorro", "peixe", "passaro"]
+    @Published var correct: Bool?
+    @Published var showGameOver: Bool = false
     @State private var animalManager = AnimalPackage()
+    
     private let descriptions: [String] = [
         "Tem quatro patas e é peludo",
         "Tem escamas e vive na água",
@@ -116,6 +126,65 @@ struct ViewModel {
             return descriptionsLevel.randomElement()?.description ?? ""
         }
         
+    }
+    
+    func checkAnswer() {
+
+        if let foundWord = words.first(where: { word in answer.contains(word) })
+        {
+
+            if foundWord == animal {
+                correct = true
+                if lives == 2 {
+                    points += 30
+                    let response = startGame()
+                    description = response[0]
+                    animal = response[1]
+                    lives = 2
+                } else {
+                    points += 20
+                    let response = startGame()
+                    description = response[0]
+                    animal = response[1]
+                    lives = 2
+                }
+
+            } else {
+                lives -= 1
+                correct = false
+                description2 = getDescriptionLevels(
+                    animal: animal,
+                    level: 2
+                )
+            }
+        } else {
+            lives -= 1
+            correct = false
+            description2 = getDescriptionLevels(
+                animal: animal,
+                level: 2
+            )
+        }
+
+        DispatchQueue.main.asyncAfter(deadline: .now() + 1.5) {
+            withAnimation {
+                self.correct = nil
+            }
+        }
+
+        if lives <= 0 {
+            showGameOver = true
+
+        }
+    }
+    
+    func restartGame() {
+        lives = 2
+        points = 0
+        correct = nil
+        let response = startGame()
+        description = response[0]
+        animal = response[1]
     }
     
     
