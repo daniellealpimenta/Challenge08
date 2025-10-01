@@ -1,4 +1,4 @@
-# Challenge08
+# ZooWho
 
 ## ✏️ Descrição do projeto
 Este app foi desenvolvido com o objetivo de consolidar o apresendizado sobre dependências externas, framework Speech e machine learning, a partir de tecnologias Apple.
