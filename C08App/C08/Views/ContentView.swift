@@ -170,7 +170,7 @@ struct ContentView: View {
             manager.checkAnswer()
 
             isButtonDisabled = true
-            DispatchQueue.main.asyncAfter(deadline: .now() + 0.8) {
+            DispatchQueue.main.asyncAfter(deadline: .now() + 1.5) {
                 isButtonDisabled = false
             }
         }
